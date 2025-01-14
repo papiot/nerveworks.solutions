@@ -232,4 +232,142 @@ body {
     .hero h1 {
         font-size: 2rem;
     }
+}
+
+.honeycomb {
+    background: var(--yellow-primary);
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hexagon-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 2rem;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.top-row {
+    transform: translateY(35px); /* Changed from 115px */
+}
+
+.bottom-row {
+    transform: translateY(-35px); /* Changed from -115px */
+}
+
+/* Reset individual hexagon transforms */
+.hexagon.top-left,
+.hexagon.top-right {
+    transform: none;
+}
+
+.hexagon.left {
+    transform: translateX(5px);
+}
+
+.hexagon.right {
+    transform: translateX(-5px);
+}
+
+.hexagon {
+    width: 200px;
+    height: 230px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--dark);
+    transition: background-color 0.3s ease;
+}
+
+.hexagon::before,
+.hexagon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexagon::before {
+    background: var(--dark);
+    transform: scale(1.02); /* Slightly larger for border effect */
+    z-index: 1;
+}
+
+.hexagon::after {
+    background: var(--yellow-primary);
+    z-index: 2;
+}
+
+.hexagon span {
+    position: relative;
+    z-index: 3;
+}
+
+.hexagon:hover::after {
+    background: var(--yellow-dark);
+}
+
+.hexagon.center {
+    font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .hexagon-container {
+        gap: 50px;
+    }
+
+    .hex-row {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .top-row {
+        transform: none;
+    }
+
+    .hexagon.left,
+    .hexagon.right {
+        transform: none;
+    }
+
+    .hexagon {
+        width: 180px;
+        height: 207px;
+        font-size: 1.1rem;
+    }
+
+    .hexagon.center {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hexagon {
+        width: 150px;
+        height: 173px;
+        font-size: 1rem;
+    }
+
+    .hexagon.center {
+        font-size: 2rem;
+    }
 } 
