@@ -238,7 +238,7 @@ body {
     background: var(--yellow-primary);
     padding: 6rem 2rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hexagon-container {
@@ -250,6 +250,7 @@ body {
     align-items: center;
     gap: 0;
     padding: 2rem;
+    z-index: 2;
 }
 
 .hex-row {
@@ -293,6 +294,8 @@ body {
     font-weight: 900;
     color: var(--dark);
     transition: background-color 0.3s ease;
+    overflow: visible;
+    z-index: 1;
 }
 
 .hexagon::before,
@@ -328,35 +331,86 @@ body {
 
 .hexagon.center {
     font-size: 2.5rem;
+    z-index: 1;
 }
 
+.hex-description {
+    position: absolute;
+    width: 250px;
+    background: var(--dark);
+    color: var(--yellow-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    left: calc(100% + 20px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Line animation */
+.hex-description::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--dark);
+    transition: width 0.3s ease;
+}
+
+/* Show description on hover */
+.hexagon:hover .hex-description {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%);
+}
+
+.hexagon:hover .hex-description::before {
+    width: 20px;
+}
+
+/* Position adjustments for different hexagons */
+.hexagon.right .hex-description,
+.hexagon.top-right .hex-description,
+.hexagon.bottom-right .hex-description {
+    left: auto;
+    right: calc(100% + 20px);
+}
+
+.hexagon.right .hex-description::before,
+.hexagon.top-right .hex-description::before,
+.hexagon.bottom-right .hex-description::before {
+    left: auto;
+    right: -20px;
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .hexagon-container {
-        gap: 50px;
+    .hex-description {
+        position: fixed;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2rem;
+        top: auto;
+        transform: translateX(-50%) translateY(20px);
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
     }
 
-    .hex-row {
-        flex-direction: column;
-        gap: 50px;
+    .hex-description::before {
+        display: none;
     }
 
-    .top-row {
-        transform: none;
-    }
-
-    .hexagon.left,
-    .hexagon.right {
-        transform: none;
-    }
-
-    .hexagon {
-        width: 180px;
-        height: 207px;
-        font-size: 1.1rem;
-    }
-
-    .hexagon.center {
-        font-size: 2.2rem;
+    .hexagon:hover .hex-description {
+        transform: translateX(-50%) translateY(0);
     }
 }
 
@@ -370,4 +424,119 @@ body {
     .hexagon.center {
         font-size: 2rem;
     }
+}
+
+/* Adjust positioning for specific hexagons */
+.hexagon.right .hex-description {
+    left: auto;
+    right: calc(100% + 20px);
+}
+
+.hexagon.bottom-left .hex-description {
+    top: auto;
+    bottom: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+}
+
+.hexagon.bottom-right .hex-description {
+    top: auto;
+    bottom: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Adjust hover states for bottom hexagons */
+.hexagon.bottom-left:hover .hex-description,
+.hexagon.bottom-right:hover .hex-description {
+    transform: translateX(-50%) translateY(-10px);
+}
+
+/* Adjust the connecting lines for bottom hexagons */
+.hexagon.bottom-left .hex-description::before,
+.hexagon.bottom-right .hex-description::before {
+    left: 50%;
+    top: auto;
+    bottom: -20px;
+    width: 2px;
+    height: 0;
+    transform: translateX(-50%);
+}
+
+.hexagon.bottom-left:hover .hex-description::before,
+.hexagon.bottom-right:hover .hex-description::before {
+    height: 20px;
+}
+
+.hexagon:hover {
+    z-index: 20;
+}
+
+/* Restore responsive layout */
+@media (max-width: 768px) {
+    .hexagon-container {
+        gap: 50px;
+    }
+
+    .hex-row {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .top-row,
+    .bottom-row {
+        transform: none;
+    }
+
+    .hexagon.left,
+    .hexagon.right {
+        transform: none;
+    }
+
+    .hex-description {
+        position: fixed;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 2rem;
+        top: auto;
+        transform: translateX(-50%) translateY(20px);
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .hex-description::before {
+        display: none;
+    }
+
+    .hexagon:hover .hex-description {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .hexagon {
+        width: 150px;
+        height: 173px;
+        font-size: 1rem;
+    }
+
+    .hexagon.center {
+        font-size: 2rem;
+    }
+
+    .hex-row {
+        gap: 30px;
+    }
+}
+
+/* Bottom hexagons need higher z-index when hovered */
+.hexagon.bottom-left:hover,
+.hexagon.bottom-right:hover {
+    z-index: 30;
+}
+
+.hexagon.bottom-left .hex-description,
+.hexagon.bottom-right .hex-description {
+    z-index: 200;
 } 
