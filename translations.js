@@ -15,7 +15,7 @@ const translations = {
             title: "Data Analytics",
             text: "Transform your raw data into actionable insights with our advanced analytics capabilities."
         },
-        footer: "© 2025 Nerveworks Solutions SRL. All rights reserved."
+        footer: "© 2015-2025 Nerveworks Solutions SRL. All rights reserved."
     },
     ro: {
         title: "Nerveworks Solutions - Inovație în IA",
@@ -33,7 +33,7 @@ const translations = {
             title: "Analiză Date",
             text: "Transformați datele brute în informații acționabile cu capacitățile noastre avansate de analiză."
         },
-        footer: "© 2025 Nerveworks Solutions SRL. Toate drepturile rezervate."
+        footer: "© 2015-2025 Nerveworks Solutions SRL. Toate drepturile rezervate."
     }
 };
 
