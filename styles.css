@@ -99,10 +99,10 @@ body {
     background-image: 
         repeating-linear-gradient(
             45deg,
-            rgba(26, 26, 26, 0.03) 0px,
-            rgba(26, 26, 26, 0.03) 1px,
+            rgba(26, 26, 26, 0.02) 0px,
+            rgba(26, 26, 26, 0.02) 1px,
             transparent 1px,
-            transparent 10px
+            transparent 50px
         );
     z-index: 1;
 }
