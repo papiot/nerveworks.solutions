@@ -258,14 +258,22 @@ body {
     justify-content: center;
     align-items: center;
     gap: 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .top-row {
-    transform: translateY(35px); /* Changed from 115px */
+    transform: translateY(35px);
+    z-index: 1;
 }
 
 .bottom-row {
-    transform: translateY(-35px); /* Changed from -115px */
+    transform: translateY(-35px);
+    z-index: 3;
+}
+
+.middle-row {
+    z-index: 2;
 }
 
 /* Reset individual hexagon transforms */
@@ -538,5 +546,14 @@ body {
 
 .hexagon.bottom-left .hex-description,
 .hexagon.bottom-right .hex-description {
+    z-index: 200;
+}
+
+/* Special handling for bottom hexagons */
+.bottom-row .hexagon:hover {
+    z-index: 30;
+}
+
+.bottom-row .hex-description {
     z-index: 200;
 } 
