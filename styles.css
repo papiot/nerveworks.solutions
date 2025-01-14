@@ -73,7 +73,7 @@ body {
     padding: 2rem;
     position: relative;
     overflow: hidden;
-    background: var(--yellow-primary);
+    /* background: var(--yellow-primary); */
     padding-top: calc(70px + 2rem);
 }
 
@@ -235,7 +235,7 @@ body {
 }
 
 .honeycomb {
-    background: var(--yellow-primary);
+    /* background: var(--yellow-primary); */
     padding: 6rem 2rem;
     position: relative;
     overflow: visible;
